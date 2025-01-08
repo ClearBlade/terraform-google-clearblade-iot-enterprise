@@ -10,8 +10,9 @@ variable "region" {
 }
 
 variable "namespace_name" {
-  description = "Name of the Client"
+  description = "Instance namespace"
   type        = string
+  default = "clearblade"
 }
 
 variable "zones" {
@@ -129,18 +130,377 @@ variable "helm_chart_name" {
 variable "helm_chart" {
   description = "location of helm chart"
   type = string
-  default = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-2.14.2/clearblade-iot-enterprise-2.14.2.tgz"
+  default = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-3.0.4/clearblade-iot-enterprise-3.0.4.tgz"
 }
 
-variable "helm_values_file" {
-  description = "location of the heml values file"
-  type = string
-  sensitive = true
+variable "postgres_primary_password_length" {
+  description = "password length for postgres primary password"
+  type = number
+  default = 16
 }
 
-variable "service_account_access_token" {
-  description = "svc account access token"
+variable "postgres_replica_password_length" {
+  description = "password length for postgres replica password"
+  type = number
+  default = 16
+}
+
+variable "postgres_postgres_password_length" {
+  description = "password length for postgres password"
+  type = number
+  default = 16
+}
+
+variable "registration_key_length" {
+  description = "length of the registration key"
+  type = number
+  default = 8
+}
+
+variable "image_puller_secret" {
+  description = "Secret to pull containers from the Google Container Registry"
   type = string
-  sensitive = true
+}
+
+variable "blue_version" {
+  description = "The blue version is the default ClearBlade version"
+  type = string
+}
+
+variable "instance_id" {
+  description = "The Instance ID for the deployment, provided by ClearBlade"
+  type = string
+}
+
+variable "iotcore_enabled" {
+  description = "Set to true if this deployment uses the IOTCore Sidecar"
+  type = bool
+  default = false
+}
+
+variable "ia_enabled" {
+  description = "Set to true if this deployment uses the Intelligent Assets Sidecar"
+  type = bool
+  default = false
+}
+
+variable "cloudsql_enabled" {
+  description = "Set to true if you are using GCP's Cloud SQL instead of postgres"
+  type = bool
+  default = false
+}
+
+variable "memorystore_enabled" {
+  description = "Set to true if you are using GCP's MemoryStore instead of redis"
+  type = bool
+  default = false
+}
+
+variable "storage_class" {
+  description = "Define the storage class used by all Persistent Volume Claims in the deployment"
+  type = string
+  default = "premium-rwo"
+}
+
+
+
+# Console CPU and memory
+
+variable "console_request_cpu" {
+  description = "ClearBlade Console requested CPU"
+  type = number
+  default = 1
+}
+
+variable "console_request_memory" {
+  description = "ClearBlade Console requested memory"
+  type = string
+  default = "1G"
+}
+
+variable "console_limit_cpu" {
+  description = "ClearBlade Console CPU limit"
+  type = number
+  default = 1
+}
+
+variable "console_limit_memory" {
+  description = "ClearBlade Console memory limit"
+  type = string
+  default = "1G"
+}
+
+
+
+# File hosting CPU and memory
+
+variable "file_hosting_request_cpu" {
+  description = "ClearBlade File Hosting requested CPU"
+  type = number
+  default = 1
+}
+
+variable "file_hosting_request_memory" {
+  description = "ClearBlade File Hosting requested memory"
+  type = string
+  default = "1G"
+}
+
+variable "file_hosting_limit_cpu" {
+  description = "ClearBlade File Hosting CPU limit"
+  type = number
+  default = 1
+}
+
+variable "file_hosting_limit_memory" {
+  description = "ClearBlade File Hosting memory limit"
+  type = string
+  default = "1G"
+}
+
+
+
+# HAProxy CPU and memory
+
+variable "haproxy_replicas" {
+  description = "Number of HAProxy replicas"
+  type = number
+  default = 1
+}
+
+variable "haproxy_request_cpu" {
+  description = "HAProxy requested CPU"
+  type = number
+  default = 1
+}
+
+variable "haproxy_request_memory" {
+  description = "HAProxy requested memory"
+  type = string
+  default = "1G"
+}
+
+variable "haproxy_limit_cpu" {
+  description = "HAProxy CPU limit"
+  type = number
+  default = 1
+}
+
+variable "haproxy_limit_memory" {
+  description = "HAProxy memory limit"
+  type = string
+  default = "1G"
+}
+
+variable "haproxy_enabled" {
+  description = "Set to false if using an external HAProxy deployment"
+  type = bool
+  default = true
+}
+
+variable "haproxy_mqtt_over_443" {
+  description = "Set to true for allowing MQTT connections over port 443 in addition to the default 1883"
+  type = bool
+  default = false
+}
+
+
+
+# IoT Core CPU and memory
+
+variable "iotcore_check_clearblade_rediness" {
+  description = "Set to true to force the IOTCore pod to wait for the Clearblade pods before starting"
+  type = bool
+  default = false
+}
+
+variable "iotcore_request_cpu" {
+  description = "ClearBlade IoT Core requested CPU"
+  type = number
+  default = 1
+}
+
+variable "iotcore_request_memory" {
+  description = "ClearBlade IoT Core requested memory"
+  type = string
+  default = "1G"
+}
+
+variable "iotcore_limit_cpu" {
+  description = "ClearBlade IoT Core CPU limit"
+  type = number
+  default = 1
+}
+
+variable "iotcore_limit_memory" {
+  description = "ClearBlade IoT Core memory limit"
+  type = string
+  default = "1G"
+}
+
+
+
+# IA CPU and memory
+
+variable "ia_check_clearblade_rediness" {
+  description = "Set to true to force the Intelligent Assets pod to wait for the Clearblade pods before starting"
+  type = bool
+  default = false
+}
+
+variable "ia_request_cpu" {
+  description = "ClearBlade Intelligent Assets requested CPU"
+  type = number
+  default = 1
+}
+
+variable "ia_request_memory" {
+  description = "ClearBlade Intelligent Assets requested memory"
+  type = string
+  default = "1G"
+}
+
+variable "ia_limit_cpu" {
+  description = "ClearBlade Intelligent Assets CPU limit"
+  type = number
+  default = 1
+}
+
+variable "ia_limit_memory" {
+  description = "ClearBlade Intelligent Assets memory limit"
+  type = string
+  default = "1G"
+}
+
+
+
+# Postgres CPU and memory
+
+variable "postgres_enabled" {
+  description = "Set to false if using an external postgres deployment"
+  type = bool
+  default = true
+}
+
+variable "postgres_replicas" {
+  description = "Number of Postgres replicas"
+  type = number
+  default = 1
+}
+
+variable "postgres_request_cpu" {
+  description = "Postgres requested CPU"
+  type = number
+  default = 1
+}
+
+variable "postgres_request_memory" {
+  description = "Postgres requested memory"
+  type = string
+  default = "2G"
+}
+
+variable "postgres_limit_cpu" {
+  description = "Postgres CPU limit"
+  type = number
+  default = 1
+}
+
+variable "postgres_limit_memory" {
+  description = "Postgres memory limit"
+  type = string
+  default = "2G"
+}
+
+variable "postgres_0disk_name" {
+  description = "Postgres0 disk name"
+  type = string
+  default = "postgres-0"
+}
+
+
+
+# Redis CPU and memory
+
+variable "redis_enabled" {
+  description = "Set to false if using an external redis deployment"
+  type = bool
+  default = true
+}
+
+variable "redis_high_availability" {
+  description = "Set to true to utilize redis sentinel with automatic failover. Requires roughly 4x CPU/mem as a non-HA deployment"
+  type = bool
+  default = false
+}
+
+variable "redis_request_cpu" {
+  description = "Redis requested CPU"
+  type = number
+  default = 1
+}
+
+variable "redis_request_memory" {
+  description = "Redis requested memory"
+  type = string
+  default = "2G"
+}
+
+variable "redis_limit_cpu" {
+  description = "Redis CPU limit"
+  type = number
+  default = 1
+}
+
+variable "redis_limit_memory" {
+  description = "Redis memory limit"
+  type = string
+  default = "2G"
+}
+
+
+
+# ClearBlade CPU and memory
+
+variable "clearblade_blue_replicas" {
+  description = "If not using blue/green deployments, blue is the default"
+  type = number
+  default = 2
+}
+
+variable "clearblade_green_replicas" {
+  description = "If not using blue/green deployments, set to 0"
+  type = number
+  default = 0
+}
+
+variable "clearblade_mqtt_allow_duplicate_clientid" {
+  description = "Set to true to allow duplicate client IDs. Set to false to reject duplicate connections"
+  type = bool
+  default = true
+}
+
+variable "clearblade_request_cpu" {
+  description = "ClearBlade requested CPU"
+  type = number
+  default = 1
+}
+
+variable "clearblade_request_memory" {
+  description = "ClearBlade requested memory"
+  type = string
+  default = "1G"
+}
+
+variable "clearblade_limit_cpu" {
+  description = "ClearBlade CPU limit"
+  type = number
+  default = 1
+}
+
+variable "clearblade_limit_memory" {
+  description = "ClearBlade memory limit"
+  type = string
+  default = "1G"
 }
 
