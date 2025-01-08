@@ -133,6 +133,12 @@ variable "helm_chart" {
   default = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-3.0.4/clearblade-iot-enterprise-3.0.4.tgz"
 }
 
+variable "gcp_gsm_service_account" {
+  description = "GCP Secret Manager service account ID"
+  type = string
+  default = "clearblade-gsm-read"
+}
+
 variable "postgres_primary_password_length" {
   description = "password length for postgres primary password"
   type = number

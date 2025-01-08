@@ -10,7 +10,7 @@ terraform {
     }
     clearblade-google = {
       source = "ClearBlade/clearblade-google"
-      version = "0.0.0-beta.2"
+      version = "0.0.0-beta.4"
     }
   }
 }

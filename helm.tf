@@ -13,7 +13,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         gcp_memorystore_enabled = var.memorystore_enabled
         gcp_project = var.project_id
         gcp_region = var.region
-        gcp_gsm_service_account = "clearblade-gsm-read@${var.project_id}.iam.gserviceaccount.com"
+        gcp_gsm_service_account = var.gcp_gsm_service_account
         storage_class_name = var.storage_class
     }
     cb_console = {
