@@ -3,7 +3,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
     global = {
         namespace = var.namespace_name
         image_puller_secret = var.image_puller_secret
-        enterprise_base_url = "${var.namespace_name}-clearblade.com"
+        enterprise_base_url = var.base_url == "" ? "${var.namespace_name}.${var.base_url_suffix}" : var.base_url
         enterprise_blue_version = var.blue_version
         enterprise_instance_id = var.instance_id
         enterprise_registration_key = clearblade-google_random_string.registration_key.value
@@ -31,13 +31,15 @@ data "clearblade-google_helm_values" "cb_helm_values" {
     cb_haproxy = {
         replicas = var.haproxy_replicas
         enabled = var.haproxy_enabled
-        primary_ip = google_compute_address.cb_primary.address
-        mqtt_ip = google_compute_address.cb_mqtt.address
+        primary_ip = var.primary_ip == "" ? google_compute_address.cb_primary[0].address : var.primary_ip
+        mqtt_ip = var.create_mqtt_ip == true ? google_compute_address.cb_mqtt[0].address : ""
         mqtt_over_443 = var.haproxy_mqtt_over_443
         request_cpu = var.haproxy_request_cpu
         request_memory = var.haproxy_request_memory
         limit_cpu = var.haproxy_limit_cpu
         limit_memory = var.haproxy_limit_memory
+        cert_renewal = var.tls_certificate == "" ? true : false
+        renewal_days = var.renewal_days
     }
     cb_iotcore = {
         check_clearblade_readiness = var.iotcore_check_clearblade_rediness

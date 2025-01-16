@@ -10,6 +10,7 @@ resource "google_container_cluster" "primary" {
   node_locations           = var.zones
   remove_default_node_pool = true
   initial_node_count       = 1
+  deletion_protection = false
   release_channel {
     channel = var.release_channel
   }

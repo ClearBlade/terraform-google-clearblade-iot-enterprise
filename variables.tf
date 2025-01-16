@@ -130,13 +130,7 @@ variable "helm_chart_name" {
 variable "helm_chart" {
   description = "location of helm chart"
   type = string
-  default = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-3.0.4/clearblade-iot-enterprise-3.0.4.tgz"
-}
-
-variable "gcp_gsm_service_account" {
-  description = "GCP Secret Manager service account ID"
-  type = string
-  default = "clearblade-gsm-read"
+  default = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-3.1.0/clearblade-iot-enterprise-3.1.0.tgz"
 }
 
 variable "postgres_primary_password_length" {
@@ -163,6 +157,32 @@ variable "registration_key_length" {
   default = 8
 }
 
+variable "cloudflare_api_token" {
+  description = "Cloudflare API Token for a creating DNS record"
+  type = string
+}
+
+variable "cloudflare_zone_id" {
+  description = "Cloudflare Zone ID"
+  type = string
+}
+
+variable "tls_certificate" {
+  description = "Location of the TLS certificate PEM file. Set if you have your own TLS certificate and are not using the automatic cert renewal with LetsEncrypt"
+  type = string
+  default = ""
+}
+
+
+
+# Global
+
+variable "gcp_gsm_service_account" {
+  description = "GCP Secret Manager service account ID"
+  type = string
+  default = "clearblade-gsm-read"
+}
+
 variable "image_puller_secret" {
   description = "Secret to pull containers from the Google Container Registry"
   type = string
@@ -171,6 +191,18 @@ variable "image_puller_secret" {
 variable "blue_version" {
   description = "The blue version is the default ClearBlade version"
   type = string
+}
+
+variable "base_url" {
+  description = "The base URL the platform will be reachable at. Set if you have your own domain name"
+  type = string
+  default = ""
+}
+
+variable "base_url_suffix" {
+  description = "For example clearblade.com"
+  type = string
+  default = "clearblade.io"
 }
 
 variable "instance_id" {
@@ -306,6 +338,24 @@ variable "haproxy_enabled" {
 
 variable "haproxy_mqtt_over_443" {
   description = "Set to true for allowing MQTT connections over port 443 in addition to the default 1883"
+  type = bool
+  default = false
+}
+
+variable "renewal_days" {
+  description = "Days out to renew cert if using automatic cert renewal with LetsEncrypt"
+  type = number
+  default = 5
+}
+
+variable "primary_ip" {
+  description = "The primary external IP address for the deployment. Set if you already have an external IP address setup in GCP"
+  type = string
+  default = ""
+}
+
+variable "create_mqtt_ip" {
+  description = "Set to true if utilizing external MQTT connections"
   type = bool
   default = false
 }

@@ -10,7 +10,11 @@ terraform {
     }
     clearblade-google = {
       source = "ClearBlade/clearblade-google"
-      version = "0.0.0-beta.4"
+      version = "0.0.0-beta.6"
+    }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "5.0.0-alpha1"
     }
   }
 }
@@ -31,4 +35,8 @@ provider "helm" {
     cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
     token = data.google_client_config.provider.access_token
   }
+}
+
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
 }
