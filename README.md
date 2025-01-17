@@ -18,8 +18,8 @@ Here's an example usage of the module.
 
 ```
 module "clearblade-iot-enterprise" {
-    source  = "ClearBlade/clearblade-iot-enterprise/google"
-    version = "<version>"
+    source                       = "ClearBlade/clearblade-iot-enterprise/google"
+    version                      = "<version>"
     project_id                   = "<project_id>"
     namespace_name               = "<namespace>"
     region                       = "<region>"
@@ -36,12 +36,12 @@ module "clearblade-iot-enterprise" {
     console_disk_size            = "10"
     days_in_cycle                = 1
     start_time                   = "04:00"
-    blue_version = "<version>"
-    cloudflare_api_token = "<api_token>"
-    cloudflare_zone_id = "<zone_id>"
-    instance_id = "<instance_id>"
-    base_url_suffix = "<url_suffix>"
-    image_puller_secret = "<image_puller_secret>"
+    blue_version                 = "<version>"
+    cloudflare_api_token         = "<api_token>"
+    cloudflare_zone_id           = "<zone_id>"
+    instance_id                  = "<instance_id>"
+    base_url_suffix              = "<url_suffix>"
+    image_puller_secret          = "<image_puller_secret>"
     helm_chart                   = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-3.1.1/clearblade-iot-enterprise-3.1.1.tgz"
 }
 ```
