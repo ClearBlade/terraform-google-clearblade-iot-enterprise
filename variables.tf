@@ -168,7 +168,7 @@ variable "cloudflare_zone_id" {
 }
 
 variable "tls_certificate" {
-  description = "Location of the TLS certificate PEM file. Set if you have your own TLS certificate and are not using the automatic cert renewal with LetsEncrypt"
+  description = "TLS certificate PEM. Set if you have your own TLS certificate and are not using the automatic cert renewal with LetsEncrypt"
   type = string
   default = ""
 }

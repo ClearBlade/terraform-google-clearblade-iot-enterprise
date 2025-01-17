@@ -40,5 +40,5 @@ resource "clearblade-google_tls_certificate" "clearblade_tls_certificate" {
     project_id = var.project_id
     namespace = var.namespace_name
     suffix = "_tls-certificates"
-    tls_certificate = var.tls_certificate == "" ? var.tls_certificate : file("${var.tls_certificate}")
+    tls_certificate = var.tls_certificate == "" ? "" : var.tls_certificate
 }
