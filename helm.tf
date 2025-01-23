@@ -5,6 +5,8 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         image_puller_secret = var.image_puller_secret
         enterprise_base_url = var.base_url == "" ? "${var.namespace_name}.${var.base_url_suffix}" : var.base_url
         enterprise_blue_version = var.blue_version
+        enterprise_green_version = var.green_version
+        enterprise_slot = var.blue_green_slot
         enterprise_instance_id = var.instance_id
         enterprise_registration_key = clearblade-google_random_string.registration_key.value
         iotcore_enabled = var.iotcore_enabled

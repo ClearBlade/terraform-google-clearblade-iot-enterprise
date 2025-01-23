@@ -193,6 +193,18 @@ variable "blue_version" {
   type = string
 }
 
+variable "green_version" {
+  description = "Needed for blue green upgrades. Ignore if not using"
+  type = string
+  default = ""
+}
+
+variable "blue_green_slot" {
+  description = "Slot for blue green upgrades. Ignore if not using"
+  type = string
+  default = "blue"
+}
+
 variable "base_url" {
   description = "The base URL the platform will be reachable at. Set if you have your own domain name"
   type = string
