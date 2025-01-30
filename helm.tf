@@ -2,86 +2,86 @@ data "clearblade-google_helm_values" "cb_helm_values" {
   options = {
     global = {
         namespace = var.namespace_name
-        image_puller_secret = var.image_puller_secret
-        enterprise_base_url = var.base_url == "" ? "${var.namespace_name}.${var.base_url_suffix}" : var.base_url
-        enterprise_blue_version = var.blue_version
-        enterprise_green_version = var.green_version
-        enterprise_slot = var.blue_green_slot
-        enterprise_instance_id = var.instance_id
+        image_puller_secret = var.helm_values.image_puller_secret
+        enterprise_base_url = var.helm_values.base_url == "" ? "${var.namespace_name}.${var.helm_values.base_url_suffix}" : var.helm_values.base_url
+        enterprise_blue_version = var.helm_values.blue_version
+        enterprise_green_version = var.helm_values.green_version
+        enterprise_slot = var.helm_values.blue_green_slot
+        enterprise_instance_id = var.helm_values.instance_id
         enterprise_registration_key = clearblade-google_random_string.registration_key.value
-        iotcore_enabled = var.iotcore_enabled
-        ia_enabled = var.ia_enabled
-        gcp_cloudsql_enabled = var.cloudsql_enabled
-        gcp_memorystore_enabled = var.memorystore_enabled
+        iotcore_enabled = var.helm_values.iotcore_enabled
+        ia_enabled = var.helm_values.ia_enabled
+        gcp_cloudsql_enabled = var.helm_values.cloudsql_enabled
+        gcp_memorystore_enabled = var.helm_values.memorystore_enabled
         gcp_project = var.project_id
         gcp_region = var.region
-        gcp_gsm_service_account = var.gcp_gsm_service_account
-        storage_class_name = var.storage_class
+        gcp_gsm_service_account = var.helm_values.gcp_gsm_service_account
+        storage_class_name = var.helm_values.storage_class
     }
     cb_console = {
-        request_cpu = var.console_request_cpu
-        request_memory = var.console_request_memory
-        limit_cpu = var.console_limit_cpu
-        limit_memory = var.console_limit_memory
+        request_cpu = var.helm_values.console_request_cpu
+        request_memory = var.helm_values.console_request_memory
+        limit_cpu = var.helm_values.console_limit_cpu
+        limit_memory = var.helm_values.console_limit_memory
     }
     cb_file_hosting = {
-        request_cpu = var.file_hosting_request_cpu
-        request_memory = var.file_hosting_request_memory
-        limit_cpu = var.file_hosting_limit_cpu
-        limit_memory = var.file_hosting_limit_memory
+        request_cpu = var.helm_values.file_hosting_request_cpu
+        request_memory = var.helm_values.file_hosting_request_memory
+        limit_cpu = var.helm_values.file_hosting_limit_cpu
+        limit_memory = var.helm_values.file_hosting_limit_memory
     }
     cb_haproxy = {
-        replicas = var.haproxy_replicas
-        enabled = var.haproxy_enabled
-        primary_ip = var.primary_ip == "" ? google_compute_address.cb_primary[0].address : var.primary_ip
-        mqtt_ip = var.create_mqtt_ip == true ? google_compute_address.cb_mqtt[0].address : ""
-        mqtt_over_443 = var.haproxy_mqtt_over_443
-        request_cpu = var.haproxy_request_cpu
-        request_memory = var.haproxy_request_memory
-        limit_cpu = var.haproxy_limit_cpu
-        limit_memory = var.haproxy_limit_memory
+        replicas = var.helm_values.haproxy_replicas
+        enabled = var.helm_values.haproxy_enabled
+        primary_ip = var.helm_values.primary_ip == "" ? google_compute_address.cb_primary[0].address : var.helm_values.primary_ip
+        mqtt_ip = var.helm_values.create_mqtt_ip == true ? google_compute_address.cb_mqtt[0].address : ""
+        mqtt_over_443 = var.helm_values.haproxy_mqtt_over_443
+        request_cpu = var.helm_values.haproxy_request_cpu
+        request_memory = var.helm_values.haproxy_request_memory
+        limit_cpu = var.helm_values.haproxy_limit_cpu
+        limit_memory = var.helm_values.haproxy_limit_memory
         cert_renewal = var.tls_certificate == "" ? true : false
-        renewal_days = var.renewal_days
+        renewal_days = var.helm_values.renewal_days
     }
     cb_iotcore = {
-        check_clearblade_readiness = var.iotcore_check_clearblade_rediness
-        request_cpu = var.iotcore_request_cpu
-        request_memory = var.iotcore_request_memory
-        limit_cpu = var.iotcore_limit_cpu
-        limit_memory = var.iotcore_limit_memory
+        check_clearblade_readiness = var.helm_values.iotcore_check_clearblade_rediness
+        request_cpu = var.helm_values.iotcore_request_cpu
+        request_memory = var.helm_values.iotcore_request_memory
+        limit_cpu = var.helm_values.iotcore_limit_cpu
+        limit_memory = var.helm_values.iotcore_limit_memory
     }
     cb_ia = {
-        check_clearblade_readiness = var.ia_check_clearblade_rediness
-        request_cpu = var.ia_request_cpu
-        request_memory = var.ia_request_memory
-        limit_cpu = var.ia_limit_cpu
-        limit_memory = var.ia_limit_memory
+        check_clearblade_readiness = var.helm_values.ia_check_clearblade_rediness
+        request_cpu = var.helm_values.ia_request_cpu
+        request_memory = var.helm_values.ia_request_memory
+        limit_cpu = var.helm_values.ia_limit_cpu
+        limit_memory = var.helm_values.ia_limit_memory
     }
     cb_postgres = {
-        enabled = var.postgres_enabled
-        replicas = var.postgres_replicas
-        request_cpu = var.postgres_request_cpu
-        request_memory = var.postgres_request_memory
-        limit_cpu = var.postgres_limit_cpu
-        limit_memory = var.postgres_limit_memory
-        postgres0_disk_name = var.postgres_0disk_name
+        enabled = var.helm_values.postgres_enabled
+        replicas = var.helm_values.postgres_replicas
+        request_cpu = var.helm_values.postgres_request_cpu
+        request_memory = var.helm_values.postgres_request_memory
+        limit_cpu = var.helm_values.postgres_limit_cpu
+        limit_memory = var.helm_values.postgres_limit_memory
+        postgres0_disk_name = var.helm_values.postgres_0disk_name
     }
     cb_redis = {
-        enabled = var.redis_enabled
-        high_availability = var.redis_high_availability
-        request_cpu = var.redis_request_cpu
-        request_memory = var.redis_request_memory
-        limit_cpu = var.redis_limit_cpu
-        limit_memory = var.redis_limit_memory
+        enabled = var.helm_values.redis_enabled
+        high_availability = var.helm_values.redis_high_availability
+        request_cpu = var.helm_values.redis_request_cpu
+        request_memory = var.helm_values.redis_request_memory
+        limit_cpu = var.helm_values.redis_limit_cpu
+        limit_memory = var.helm_values.redis_limit_memory
     }
     clearblade = {
-        blue_replicas = var.clearblade_blue_replicas
-        green_replicas = var.clearblade_green_replicas
-        mqtt_allow_duplicate_client_id = var.clearblade_mqtt_allow_duplicate_clientid
-        request_cpu = var.clearblade_request_cpu
-        request_memory = var.clearblade_request_memory
-        limit_cpu = var.clearblade_limit_cpu
-        limit_memory = var.clearblade_limit_memory
+        blue_replicas = var.helm_values.clearblade_blue_replicas
+        green_replicas = var.helm_values.clearblade_green_replicas
+        mqtt_allow_duplicate_client_id = var.helm_values.clearblade_mqtt_allow_duplicate_clientid
+        request_cpu = var.helm_values.clearblade_request_cpu
+        request_memory = var.helm_values.clearblade_request_memory
+        limit_cpu = var.helm_values.clearblade_limit_cpu
+        limit_memory = var.helm_values.clearblade_limit_memory
     }
   }
 }
