@@ -130,7 +130,7 @@ variable "helm_chart_name" {
 variable "helm_chart" {
   description = "location of helm chart"
   type = string
-  default = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-3.1.0/clearblade-iot-enterprise-3.1.0.tgz"
+  default = "https://github.com/ClearBlade/helm-charts/releases/download/clearblade-iot-enterprise-3.1.1/clearblade-iot-enterprise-3.1.1.tgz"
 }
 
 variable "postgres_primary_password_length" {
@@ -171,6 +171,25 @@ variable "tls_certificate" {
   description = "TLS certificate PEM. Set if you have your own TLS certificate and are not using the automatic cert renewal with LetsEncrypt"
   type = string
   default = ""
+}
+
+variable "service_account_access_token" {
+  description = "Service account access token"
+  type = string
+  default = ""
+  sensitive = true
+}
+
+variable "create_gke_cluster" {
+  description = "Create GKE cluster"
+  type = bool
+  default = true
+}
+
+variable "create_gke_node_pool" {
+  description = "Create GKE node pool"
+  type = bool
+  default = true
 }
 
 

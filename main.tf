@@ -10,7 +10,7 @@ terraform {
     }
     clearblade-google = {
       source = "ClearBlade/clearblade-google"
-      version = "0.2.4"
+      version = "0.2.5"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -21,12 +21,13 @@ terraform {
 
 provider "google" {
   project         = var.project_id
+  access_token    = var.service_account_access_token
   zone            = var.region
 }
 
 provider "clearblade-google" {
-  project = var.project_id
-  region = var.region
+  project         = var.project_id
+  access_token    = var.service_account_access_token
 }
 
 provider "helm" {
