@@ -4,7 +4,7 @@ data "google_container_engine_versions" "cluster_version" {
 
 data "google_client_config" "provider" {}
 
-data "google_container_cluster" "prmary" {
+data "google_container_cluster" "primary" {
   name     = "${var.project_id}-primary-cluster"
 }
 
