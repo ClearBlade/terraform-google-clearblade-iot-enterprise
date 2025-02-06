@@ -6,6 +6,7 @@ data "google_client_config" "provider" {}
 
 data "google_container_cluster" "primary" {
   name     = "${var.project_id}-primary-cluster"
+  depends_on = [ google_container_cluster.primary ]
 }
 
 resource "google_container_cluster" "primary" {
