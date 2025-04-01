@@ -49,6 +49,8 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         request_memory = var.helm_values.iotcore_request_memory
         limit_cpu = var.helm_values.iotcore_limit_cpu
         limit_memory = var.helm_values.iotcore_limit_memory
+        version = var.helm_values.iotcore_version
+        regions = var.helm_values.iotcore_regions
     }
     cb_ia = {
         check_clearblade_readiness = var.helm_values.ia_check_clearblade_rediness
@@ -56,6 +58,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         request_memory = var.helm_values.ia_request_memory
         limit_cpu = var.helm_values.ia_limit_cpu
         limit_memory = var.helm_values.ia_limit_memory
+        version = var.helm_values.ia_version
     }
     cb_postgres = {
         enabled = var.helm_values.postgres_enabled
