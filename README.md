@@ -46,5 +46,9 @@ module "clearblade-iot-enterprise" {
 }
 ```
 
+## Release New Version
+
+To release a new version go to the releases page a click `Draft a new release` and enter the desired version, fill in the other details and then click `Publish release`.
+
 
 
