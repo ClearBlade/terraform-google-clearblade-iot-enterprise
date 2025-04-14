@@ -206,6 +206,7 @@ variable "helm_values" {
     instance_id = string
     iotcore_enabled = optional(bool, false)
     ia_enabled = optional(bool, false)
+    ops_console_enabled = optional(bool, false)
     cloudsql_enabled = optional(bool, false)
     memorystore_enabled = optional(bool, false)
     storage_class = optional(string, "premium-rwo")

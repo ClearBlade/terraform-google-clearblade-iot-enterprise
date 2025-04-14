@@ -11,6 +11,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         enterprise_registration_key = clearblade-google_random_string.registration_key.value
         iotcore_enabled = var.helm_values.iotcore_enabled
         ia_enabled = var.helm_values.ia_enabled
+        ops_console_enabled = var.helm_values.ops_console_enabled
         gcp_cloudsql_enabled = var.helm_values.cloudsql_enabled
         gcp_memorystore_enabled = var.helm_values.memorystore_enabled
         gcp_project = var.project_id
