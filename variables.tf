@@ -189,7 +189,7 @@ variable "create_gke_cluster" {
 variable "gke_cluster_name" {
   description = "GKE cluster name to create"
   type = string
-  default = "${var.project_id}-primary-cluster"
+  default = ""
 }
 
 variable "create_gke_node_pool" {
@@ -201,7 +201,7 @@ variable "create_gke_node_pool" {
 variable "gke_node_pool_name" {
   description = "GKE node pool name to create"
   type = string
-  default = "${var.project_id}-primary-pool"
+  default = ""
 }
 
 
