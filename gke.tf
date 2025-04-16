@@ -5,7 +5,7 @@ data "google_container_engine_versions" "cluster_version" {
 data "google_client_config" "provider" {}
 
 data "google_container_cluster" "primary" {
-  name     = "${var.project_id}-primary-cluster"
+  name       = var.gke_cluster_name == "" ? "${var.project_id}-primary-cluster" : var.gke_cluster_name
   depends_on = [ google_container_cluster.primary ]
 }
 
