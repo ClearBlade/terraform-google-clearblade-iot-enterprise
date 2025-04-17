@@ -10,7 +10,7 @@ data "google_container_cluster" "primary" {
 }
 
 resource "google_container_cluster" "primary" {
-  count                    = var.create_gke_cluster ? 1 : 0
+  count                    = "${var.create_gke_cluster ? 1 : 0}"
   name                     = var.gke_cluster_name == "" ? "${var.project_id}-primary-cluster" : var.gke_cluster_name
   location                 = var.region
   node_locations           = var.zones
@@ -40,7 +40,7 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_container_node_pool" "primary_nodes" {
-  count              = var.create_gke_node_pool ? 1 : 0
+  count              = "${var.create_gke_node_pool ? 1 : 0}"
   name               = var.gke_node_pool_name == "" ? "${var.project_id}-primary-pool" : var.gke_node_pool_name
   location           = var.region
   cluster            = data.google_container_cluster.primary.name
