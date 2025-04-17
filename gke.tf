@@ -5,9 +5,9 @@ data "google_container_engine_versions" "cluster_version" {
 data "google_client_config" "provider" {}
 
 data "google_container_cluster" "primary" {
-  count      = var.create_gke_cluster ? 0 : 1
-  name       = var.gke_cluster_name == "" ? "${var.project_id}-primary-cluster" : var.gke_cluster_name
-  depends_on = [ google_container_cluster.primary ]
+  count    = var.create_gke_cluster ? 0 : 1
+  name     = var.gke_cluster_name == "" ? "${var.project_id}-primary-cluster" : var.gke_cluster_name
+  location = var.region
 }
 
 resource "google_container_cluster" "primary" {
@@ -41,10 +41,10 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_container_node_pool" "primary_nodes" {
-  count              = var.create_gke_node_pool ? 1 : 0
-  name               = var.gke_node_pool_name == "" ? "${var.project_id}-primary-pool" : var.gke_node_pool_name
-  location           = var.region
-  cluster            = var.create_gke_cluster ? google_container_cluster.primary[0].name : data.google_container_cluster.primary[0].name
+  for_each = var.create_gke_node_pool ? { "primary" = true } : {}
+  name     = var.gke_node_pool_name == "" ? "${var.project_id}-primary-pool" : var.gke_node_pool_name
+  location = var.region
+  cluster  = var.create_gke_cluster ? google_container_cluster.primary[0].name : data.google_container_cluster.primary[0].name
   initial_node_count = var.initial_node_count
 
   autoscaling {
