@@ -44,7 +44,7 @@ resource "google_container_node_pool" "primary_nodes" {
   count              = var.create_gke_node_pool ? 1 : 0
   name               = var.gke_node_pool_name == "" ? "${var.project_id}-primary-pool" : var.gke_node_pool_name
   location           = var.region
-  cluster            = data.google_container_cluster.primary.name
+  cluster            = var.create_gke_cluster ? google_container_cluster.primary[0].name : data.google_container_cluster.primary[0].name
   initial_node_count = var.initial_node_count
 
   autoscaling {
