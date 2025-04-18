@@ -86,8 +86,8 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         request_memory = var.helm_values.clearblade_request_memory
         limit_cpu = var.helm_values.clearblade_limit_cpu
         limit_memory = var.helm_values.clearblade_limit_memory
-        renewal_webhooks = var.helm_values.clearblade_license_renewal_webhooks
-        metrics_webhooks = var.helm_values.clearblade_metrics_reporting_webhooks
+        license_renewal_webhooks = var.helm_values.clearblade_license_renewal_webhooks
+        metrics_reporting_webhooks = var.helm_values.clearblade_metrics_reporting_webhooks
     }
   }
 }
