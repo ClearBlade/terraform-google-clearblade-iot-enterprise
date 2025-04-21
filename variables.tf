@@ -160,17 +160,20 @@ variable "registration_key_length" {
 variable "cloudflare_api_token" {
   description = "Cloudflare API Token for a creating DNS record"
   type = string
+  sensitive = true
 }
 
 variable "cloudflare_zone_id" {
   description = "Cloudflare Zone ID"
   type = string
+  sensitive = true
 }
 
 variable "tls_certificate" {
   description = "TLS certificate PEM. Set if you have your own TLS certificate and are not using the automatic cert renewal with LetsEncrypt"
   type = string
   default = ""
+  sensitive = true
 }
 
 variable "service_account_access_token" {
@@ -207,6 +210,7 @@ variable "gke_node_pool_name" {
 
 variable "helm_values" {
   description = "helm values"
+  sensitive = true
   type = object({
     gcp_gsm_service_account = optional(string, "clearblade-gsm-read")
     image_puller_secret = string
