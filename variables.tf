@@ -277,6 +277,8 @@ variable "helm_values" {
     clearblade_request_memory = optional(string, "1G")
     clearblade_limit_cpu = optional(number, 1)
     clearblade_limit_memory = optional(string, "1G")
+    clearblade_license_renewal_webhooks = list(string)
+    clearblade_metrics_reporting_webhooks = list(string)
   })
 }
 
