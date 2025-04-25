@@ -6,6 +6,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         enterprise_base_url = var.helm_values.base_url == "" ? "${var.namespace_name}.${var.helm_values.base_url_suffix}" : var.helm_values.base_url
         enterprise_blue_version = var.helm_values.blue_version
         enterprise_green_version = var.helm_values.green_version
+        enterprise_console_version = var.helm_values.console_version
         enterprise_slot = var.helm_values.blue_green_slot
         enterprise_instance_id = var.helm_values.instance_id
         enterprise_registration_key = clearblade-google_random_string.registration_key.value

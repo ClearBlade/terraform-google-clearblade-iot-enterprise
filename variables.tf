@@ -216,6 +216,7 @@ variable "helm_values" {
     image_puller_secret = string
     blue_version = string
     green_version = optional(string, "")
+    console_version = string
     blue_green_slot = optional(string, "blue")
     base_url = optional(string, "")
     base_url_suffix = optional(string, "clearblade.io")
