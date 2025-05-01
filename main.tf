@@ -10,7 +10,7 @@ terraform {
     }
     clearblade-google = {
       source = "ClearBlade/clearblade-google"
-      version = "0.2.14"
+      version = "0.2.15"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
