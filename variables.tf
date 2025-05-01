@@ -157,6 +157,12 @@ variable "registration_key_length" {
   default = 8
 }
 
+variable "create_dns_record" {
+  description = "Creates a cloudflare dns record for the subdomain in the helm_values.base_url"
+  type = bool
+  default = true
+}
+
 variable "cloudflare_api_token" {
   description = "Cloudflare API Token for a creating DNS record"
   type = string
