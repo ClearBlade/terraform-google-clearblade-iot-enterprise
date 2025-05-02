@@ -94,7 +94,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
 }
 
 resource "helm_release" "deploy" {
-  name  = "${var.namespace_name}-clearblade-iot-enterprise"
+  name  = var.namespace_name
   chart = var.helm_chart
 
   depends_on = [
