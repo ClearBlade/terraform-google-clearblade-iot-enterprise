@@ -96,6 +96,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
 resource "helm_release" "deploy" {
   name  = var.namespace_name
   chart = var.helm_chart
+  timeout = 3600
 
   depends_on = [
     google_container_cluster.primary,
