@@ -237,6 +237,7 @@ variable "helm_values" {
     console_request_memory = optional(string, "1G")
     console_limit_cpu = optional(number, 1.0)
     console_limit_memory = optional(string, "1G")
+    enterprise_registration_key = optional(string, "")
     file_hosting_request_cpu = optional(number, 1.0)
     file_hosting_request_memory = optional(string, "1G")
     file_hosting_limit_cpu = optional(number, 1.0)

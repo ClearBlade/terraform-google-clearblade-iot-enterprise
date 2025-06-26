@@ -9,7 +9,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         enterprise_console_version = var.helm_values.console_version
         enterprise_slot = var.helm_values.blue_green_slot
         enterprise_instance_id = var.helm_values.instance_id
-        enterprise_registration_key = clearblade-google_random_string.registration_key.value
+        enterprise_registration_key = var.helm_values.enterprise_registration_key == "" ? clearblade-google_random_string.registration_key.value : var.helm_values.enterprise_registration_key
         iotcore_enabled = var.helm_values.iotcore_enabled
         ia_enabled = var.helm_values.ia_enabled
         ops_console_enabled = var.helm_values.ops_console_enabled
