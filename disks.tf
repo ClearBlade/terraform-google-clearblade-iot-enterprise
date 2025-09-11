@@ -32,7 +32,7 @@ resource "google_compute_region_disk" "iotcore_disk" {
 resource "google_compute_region_disk" "console_disk" {
   count   = var.console_disk_count
   project = var.project_id
-  name    = "${var.namespace_name}-console"
+  name    = "${var.namespace_name}-ia"
   type    = var.disk_type
   region  = var.region
   size    = var.console_disk_size
