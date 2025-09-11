@@ -45,10 +45,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         cert_renewal = var.tls_certificate == "" ? true : false
         renewal_days = var.helm_values.renewal_days
         controller_version = var.helm_values.haproxy_controller_version
-        acme_directory = var.helm_values.haproxy_controller_acme_directory
-        acme_email = var.helm_values.haproxy_controller_acme_email
-        acme_eab_kid = var.helm_values.haproxy_controller_acme_eab_key_id
-        acme_eab_key = var.helm_values.haproxy_controller_acme_eab_key
+        acme_config = var.helm_values.haproxy_controller_acme
     }
     cb_iotcore = {
         check_clearblade_readiness = var.helm_values.iotcore_check_clearblade_rediness

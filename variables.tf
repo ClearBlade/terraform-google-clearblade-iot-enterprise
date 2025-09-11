@@ -250,10 +250,12 @@ variable "helm_values" {
     haproxy_enabled = optional(bool, true)
     haproxy_mqtt_over_443 = optional(bool, false)
     haproxy_controller_version = optional(string, "latest")
-    haproxy_controller_acme_directory = optional(string, "")
-    haproxy_controller_acme_email = optiona(string, "")
-    haproxy_controller_acme_eab_key_id = optional(string, "")
-    haproxy_controller_acme_eab_key = optional(string, "")
+    haproxy_controller_acme = list(object({
+      directory = string
+      email = optional(string, "")
+      eab_kid = optional(string, "")
+      eab_key = optional(string, "")
+    }))
     renewal_days = optional(number, 5)
     primary_ip = optional(string, "")
     create_mqtt_ip = optional(bool, false)
