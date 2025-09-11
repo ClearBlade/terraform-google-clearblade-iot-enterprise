@@ -252,6 +252,7 @@ variable "helm_values" {
     haproxy_controller_version = optional(string, "latest")
     haproxy_controller_acme = list(object({
       directory = string
+      key_type = string
       email = optional(string, "")
       eab_kid = optional(string, "")
       eab_key = optional(string, "")
