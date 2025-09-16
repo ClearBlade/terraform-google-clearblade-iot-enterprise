@@ -257,6 +257,7 @@ variable "helm_values" {
       eab_kid = optional(string, "")
       eab_key = optional(string, "")
       domain = string
+      file_name = string
     }))
     renewal_days = optional(number, 5)
     primary_ip = optional(string, "")
