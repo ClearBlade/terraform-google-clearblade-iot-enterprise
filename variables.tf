@@ -256,7 +256,7 @@ variable "helm_values" {
       email = optional(string, "")
       eab_kid = optional(string, "")
       eab_key = optional(string, "")
-      domain = string
+      domains = list(string)
       file_name = string
     }))
     renewal_days = optional(number, 5)
@@ -299,4 +299,3 @@ variable "helm_values" {
     clearblade_metrics_reporting_webhooks = list(string)
   })
 }
-
