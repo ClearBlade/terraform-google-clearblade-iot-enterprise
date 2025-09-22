@@ -63,7 +63,7 @@ resource "google_compute_region_disk" "file_hosting_disk" {
 resource "google_compute_region_disk_resource_policy_attachment" "file_hosting_disk_attachment" {
   count      = 1
   name       = google_compute_resource_policy.policy.name
-  disk       = google_compute_region_disk.file_hosting_disk.name
+  disk       = google_compute_region_disk.file_hosting_disk[0].name
   project    = var.project_id
   region     = var.region
   depends_on = [google_compute_region_disk.file_hosting_disk]
