@@ -101,7 +101,7 @@ variable "iotcore_disk_size" {
 }
 
 variable "file_hosting_disk_size" {
-  description = "Size of the iotcore disk"
+  description = "Size of the file hosting disk"
   type        = string
   default     = "10"
 }
