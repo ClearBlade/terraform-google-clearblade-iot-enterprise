@@ -249,6 +249,16 @@ variable "helm_values" {
     haproxy_limit_memory = optional(string, "1G")
     haproxy_enabled = optional(bool, true)
     haproxy_mqtt_over_443 = optional(bool, false)
+    haproxy_controller_version = optional(string, "latest")
+    haproxy_controller_acme = list(object({
+      directory = string
+      key_type = string
+      email = optional(string, "")
+      eab_kid = optional(string, "")
+      eab_key = optional(string, "")
+      domains = list(string)
+      file_name = string
+    }))
     renewal_days = optional(number, 5)
     primary_ip = optional(string, "")
     create_mqtt_ip = optional(bool, false)
@@ -289,4 +299,3 @@ variable "helm_values" {
     clearblade_metrics_reporting_webhooks = list(string)
   })
 }
-
