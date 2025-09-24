@@ -100,6 +100,12 @@ variable "iotcore_disk_size" {
   type        = string
 }
 
+variable "file_hosting_disk_size" {
+  description = "Size of the file hosting disk"
+  type        = string
+  default     = "10"
+}
+
 variable "console_disk_count" {
   description = "How many console disks should be created"
   type        = number

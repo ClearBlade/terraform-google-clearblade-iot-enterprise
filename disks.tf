@@ -49,6 +49,26 @@ resource "google_compute_region_disk_resource_policy_attachment" "iotcore_disk_a
   depends_on = [google_compute_region_disk.iotcore_disk]
 }
 
+resource "google_compute_region_disk" "file_hosting_disk" {
+  count   = 1
+  project = var.project_id
+  name    = "${var.namespace_name}-file-hosting"
+  type    = var.disk_type
+  region  = var.region
+  size    = var.file_hosting_disk_size
+
+  replica_zones = var.zones
+}
+
+resource "google_compute_region_disk_resource_policy_attachment" "file_hosting_disk_attachment" {
+  count      = 1
+  name       = google_compute_resource_policy.policy.name
+  disk       = google_compute_region_disk.file_hosting_disk[0].name
+  project    = var.project_id
+  region     = var.region
+  depends_on = [google_compute_region_disk.file_hosting_disk]
+}
+
 resource "google_compute_resource_policy" "policy" {
   name   = "${var.namespace_name}-snapshot"
   region = var.region
