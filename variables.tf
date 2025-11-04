@@ -257,6 +257,7 @@ variable "helm_values" {
     haproxy_mqtt_over_443 = optional(bool, false)
     haproxy_controller_version = optional(string, "latest")
     haproxy_mtls_enable = optional(bool, false)
+    haproxy_check_clearblade_readiness = optional(bool, true)
     haproxy_controller_acme = list(object({
       directory = string
       key_type = string

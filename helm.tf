@@ -48,6 +48,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         renewal_days = var.helm_values.renewal_days
         controller_version = var.helm_values.haproxy_controller_version
         acme_config = var.helm_values.haproxy_controller_acme
+        check_clearblade_readiness = var.helm_values.haproxy_check_clearblade_readiness
     }
     cb_iotcore = {
         check_clearblade_readiness = var.helm_values.iotcore_check_clearblade_rediness
