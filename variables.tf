@@ -294,6 +294,7 @@ variable "helm_values" {
     redis_request_memory = optional(string, "2G")
     redis_limit_cpu = optional(number, 1.0)
     redis_limit_memory = optional(string, "2G")
+    clearblade_mtls_enabled
     clearblade_blue_replicas = optional(number, 2)
     clearblade_green_replicas = optional(number, 0)
     clearblade_mqtt_allow_duplicate_clientid = optional(bool, true)
@@ -303,5 +304,7 @@ variable "helm_values" {
     clearblade_limit_memory = optional(string, "1G")
     clearblade_license_renewal_webhooks = list(string)
     clearblade_metrics_reporting_webhooks = list(string)
+    enable_mtls_clearblade = optional(bool, false)
+    enable_mtls_haproxy = optional(bool, false)
   })
 }
