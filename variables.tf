@@ -181,10 +181,10 @@ variable "cloudflare_zone_id" {
   sensitive = true
 }
 
-variable "tls_certificate" {
+variable "tls_certificates" {
   description = "TLS certificate PEM. Set if you have your own TLS certificate and are not using the automatic cert renewal with LetsEncrypt"
-  type = string
-  default = ""
+  type = map[string]string
+  default = {}
   sensitive = true
 }
 
