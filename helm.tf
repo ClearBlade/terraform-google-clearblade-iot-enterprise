@@ -49,6 +49,8 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         controller_version = var.helm_values.haproxy_controller_version
         acme_config = var.helm_values.haproxy_controller_acme
         check_clearblade_readiness = var.helm_values.haproxy_check_clearblade_readiness
+        platform_cert_name = var.helm_values.haproxy_platform_cert_name
+        mqtt_cert_name = var.helm_values.haproxy_mqtt_cert_name
     }
     cb_iotcore = {
         check_clearblade_readiness = var.helm_values.iotcore_check_clearblade_rediness
