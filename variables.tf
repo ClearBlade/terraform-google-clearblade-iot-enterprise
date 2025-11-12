@@ -181,10 +181,10 @@ variable "cloudflare_zone_id" {
   sensitive = true
 }
 
-variable "tls_certificate" {
+variable "tls_certificates" {
   description = "TLS certificate PEM. Set if you have your own TLS certificate and are not using the automatic cert renewal with LetsEncrypt"
-  type = string
-  default = ""
+  type = map(string)
+  default = {}
   sensitive = true
 }
 
@@ -258,6 +258,8 @@ variable "helm_values" {
     haproxy_controller_version = optional(string, "latest")
     haproxy_mtls_enable = optional(bool, false)
     haproxy_check_clearblade_readiness = optional(bool, true)
+    haproxy_platform_cert_name = optional(string, "clearblade-0.pem")
+    haproxy_mqtt_cert_name = optional(string, "clearblade-0.pem")
     haproxy_controller_acme = list(object({
       directory = string
       key_type = string
