@@ -21,6 +21,7 @@ data "clearblade-google_helm_values" "cb_helm_values" {
         storage_class_name = var.helm_values.storage_class
         enable_mtls_clearblade = var.helm_values.clearblade_mtls_enable
         enable_mtls_haproxy = var.helm_values.haproxy_mtls_enable
+        monitoring_enabled = var.helm_values.monitoring_enabled
     }
     cb_console = {
         request_cpu = var.helm_values.console_request_cpu
