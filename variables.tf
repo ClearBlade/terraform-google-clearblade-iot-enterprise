@@ -239,6 +239,7 @@ variable "helm_values" {
     cloudsql_enabled = optional(bool, false)
     memorystore_enabled = optional(bool, false)
     storage_class = optional(string, "premium-rwo")
+    monitoring_enabled = optional(bool, true)
     console_request_cpu = optional(number, 1.0)
     console_request_memory = optional(string, "1G")
     console_limit_cpu = optional(number, 1.0)
