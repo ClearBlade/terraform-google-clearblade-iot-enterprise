@@ -36,6 +36,14 @@ resource "clearblade-google_random_string" "registration_key" {
     length = var.registration_key_length
 }
 
+resource "clearblade-google_random_string" "filehosting_hmac_secret" {
+    project_id = var.project_id
+    namespace = var.namespace_name
+    suffix = "_filehosting-hmac-secret"
+    type = "password"
+    length = 30
+}
+
 resource "clearblade-google_tls_certificate" "clearblade_tls_certificate" {
     project_id = var.project_id
     namespace = var.namespace_name
